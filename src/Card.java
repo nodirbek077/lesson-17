@@ -32,4 +32,12 @@ public class Card {
     public void setBalance(Double balance) {
         this.balance = balance;
     }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", balance=" + balance +
+                '}';
+    }
 }

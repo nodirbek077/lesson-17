@@ -1,4 +1,6 @@
 public class Terminal {
+    private Integer id;
+    private String address;
 
     // yyyy.MM.dd
     public double getAmountByDay(String date) {
@@ -9,14 +11,27 @@ public class Terminal {
         return null;
     }
 
-
     public Integer getId() {
-        return null;
+        return id;
     }
-
 
     public String getAddress() {
-        return null;
+        return address;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Terminal{" +
+                "id=" + id +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

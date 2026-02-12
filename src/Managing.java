@@ -1,7 +1,20 @@
+import java.time.LocalDateTime;
+
 public class Managing {
     private Double faire;
+
+    //Card
     private Card[] cardArray = new Card[10];
     private int cardIndex = 0;
+
+    //Terminal
+    private Terminal[] terminalArray = new Terminal[10];
+    private int terminalIndex = 0;
+
+    //Transaction
+    private Transaction[] transactionArray = new Transaction[10];
+    private int transactionIndex = 0;
+    private int generalId = 1;
 
     // yo'l xaqqini o'rnatish (2,000)
     public void setFaire(Double faire) {
@@ -27,44 +40,120 @@ public class Managing {
 
     // get card by id
     public Card getCard(Integer id) {
+        for (int i = 0; i < cardArray.length; i++) {
+            Card card = cardArray[i];
+            if (card != null && card.getId().equals(id)) {
+                return card;
+            }
+        }
         return null;
     }
 
     // cartaga pul tashlash uchun ishlatiladi.
-    public Card recharge(Integer id, double amount) {
-        return null;
+    public Card recharge(Integer id, Double amount) {
+        Card card = getCard(id);
+        if (card == null) {
+            return null;
+        }
+
+        Double newBalance = card.getBalance() + amount;
+        card.setBalance(newBalance);
+        return card;
     }
 
     // get card list
     public Card[] getCardList() {
-        return null;
+        return cardArray;
     }
 
     //
     public Terminal addTerminal(Integer id, String address) {
-        return null;
+        Terminal terminal = new Terminal();
+        terminal.setId(id);
+        terminal.setAddress(address);
+        if (terminalArray.length == terminalIndex) {
+            Terminal[] tempArray = new Terminal[terminalArray.length * 2];
+            for (int i = 0; i < terminalArray.length; i++) {
+                tempArray[i] = terminalArray[i];
+            }
+            terminalArray = tempArray;
+        }
+        terminalArray[terminalIndex++] = terminal;
+        return terminal;
     }
 
     public Terminal getTerminalById(Integer id) {
+        for (Terminal terminal : terminalArray) {
+            if (terminal != null && terminal.getId().equals(id)) {
+                return terminal;
+            }
+        }
         return null;
     }
 
     public Terminal[] terminalList() {
-        return null;
+        return terminalArray;
     }
     //
 
     public Transaction makeTransaction(Integer terminalId, Integer cardId) {
         // 1. null  agar terminal topilmasa
-        // 2. null agar  carta topilmasa
-        // 3. null agar cartada yetarli pul bo'lmasa
-        // 4. null agar shu 1 munit ichida  terminal va carta dan qayta foydalanilsa
-        // 5.  agar hammasi to'g'ri bo'lsa  Transaction objecti
+        Terminal terminal = getTerminalById(terminalId);
+        if (terminal == null) {
+            return null;
+        }
 
-        return null;
+        // 2. null agar  carta topilmasa
+        Card card = getCard(cardId);
+        if (card == null) {
+            return null;
+        }
+
+        // 3. null agar cartada yetarli pul bo'lmasa
+        if (card.getBalance() < faire) {
+            return null;
+        }
+
+        // 4. null agar shu 1 munit ichida  terminal va cartadan qayta foydalanilsa
+        LocalDateTime checkDate = LocalDateTime.now().minusMinutes(1);
+        for (Transaction transaction : transactionArray) {
+            if (transaction != null &&
+                    transaction.getCard().getId().equals(cardId) &&
+                    transaction.getTerminal().getId().equals(terminalId) &&
+                    transaction.getCreatedDate().isAfter(checkDate)) {
+                return null;
+            }
+        }
+
+        // 5.  agar hammasi to'g'ri bo'lsa  Transaction objecti yaratiladi
+        Transaction transaction = new Transaction();
+        transaction.setId(generalId++);
+        transaction.setTerminal(terminal);
+        transaction.setCard(card);
+        transaction.setFaire(faire);
+        transaction.setCreatedDate(LocalDateTime.now());
+
+        if (transactionArray.length == transactionIndex) {
+            Transaction[] tempArray = new Transaction[transactionArray.length * 2];
+            for (int i = 0; i < transactionArray.length; i++) {
+                tempArray[i] = transactionArray[i];
+            }
+            transactionArray = tempArray;
+        }
+        transactionArray[transactionIndex++] = transaction;
+
+        // 6. Kartadan pul yechib olinishi kerak
+        card.setBalance(card.getBalance() - faire);
+
+        return transaction;
     }
 
     public Transaction getById(Integer id) {
+        for (Transaction transaction : transactionArray) {
+            if (transaction != null && transaction.getId().equals(id)) {
+                return transaction;
+            }
+        }
         return null;
     }
 

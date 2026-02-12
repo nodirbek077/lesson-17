@@ -26,6 +26,7 @@ Talab 3:
     addTerminal() - terminal yaratish uchun ishlatiladi.
         id - tarminal id
         address - terminal joylashgan joyni bildiradi.
+    getTerminalById() - metodi id bo'yicha terminal obyektini  return qiladi. Agar bunday terminal bo'lmasa null return qiladi
     terminalList() - meto barch terminal ro'yhatini return qiladi.
 
 Talab 4:
@@ -44,11 +45,11 @@ Talab 4:
 
     Transaction klassida quyidagi metodlar bor:
         getCard() - transaction qilingan card ob'ektini retune qiladi.
-        getTerminal() - transaction qilingan tarminal ob'ektini retune qiladi.
+        getTerminal() - transaction qilingan tarminal ob'ektini return qiladi.
 
     getById() - metodi id-si bo'yicha Transaction-ni return qiladi. Bo'lmasa null return qiladi.
     transactionListByTerminal() - metodi terminal id-ni qabul qiladi va
         shu terminal orqalin qilingan to'lovlarni (transaction-larni)  retunr qiladi.
    transactionListByCard() - metodi card id-ni qabul qiladi va
-        shu card orqali qilingan to'lovlarni (transaction-larni)  retunr qiladi.
+        shu card orqali qilingan to'lovlarni (transaction-larni)  return qiladi.
 
