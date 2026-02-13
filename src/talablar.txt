@@ -49,7 +49,14 @@ Talab 4:
 
     getById() - metodi id-si bo'yicha Transaction-ni return qiladi. Bo'lmasa null return qiladi.
     transactionListByTerminal() - metodi terminal id-ni qabul qiladi va
-        shu terminal orqalin qilingan to'lovlarni (transaction-larni)  retunr qiladi.
+        shu terminal orqali qilingan to'lovlarni (transaction-larni)  return qiladi.
    transactionListByCard() - metodi card id-ni qabul qiladi va
         shu card orqali qilingan to'lovlarni (transaction-larni)  return qiladi.
+     getTransactionByDate() - kun bo'yicha barcha transaction-larni return qiling
+                                (kun formati yyyy.MM.dd keladi)
+
+     Terminal classda:
+        getAmountByDay() - berilgan kun bo'yicha shu terminal orqali to'langan yo'l
+            kira xaqini return qiladi.
+        transactionList() - shu terminal orqali qilingan Transaction-lar ro'yxatini return qiladi
 

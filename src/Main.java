@@ -5,7 +5,7 @@ public class Main {
 
         Card card1 = managing.addCard(1, 3000.0);
         Card card2 = managing.addCard(2, 10000.0);
-        Card card3 = managing.addCard(3, 1000.0);
+        Card card3 = managing.addCard(3, 100022.0);
 
         /*System.out.println(managing.getCard(1));
         System.out.println(managing.getCard(100));*/
@@ -19,9 +19,8 @@ public class Main {
                 System.out.println(card);
             }
         }*/
-
-        System.out.println(managing.addTerminal(1, "Chorsu"));
-        System.out.println(managing.addTerminal(2, "Yunusobod"));
+        Terminal terminal1 = managing.addTerminal(1, "Chorsu");
+        Terminal terminal2 = managing.addTerminal(2, "Yunusobod");
 
         /*System.out.println(managing.getTerminalById(1));
         System.out.println(managing.getTerminalById(11));
@@ -33,19 +32,39 @@ public class Main {
             }
         }*/
 
-        System.out.println();
-        System.out.println(managing.getCard(1));
         Transaction transaction1 = managing.makeTransaction(1, 1);
-        System.out.println(transaction1);
-        System.out.println(managing.getCard(1));
-
         Transaction transaction2 = managing.makeTransaction(1, 2);
-        System.out.println(transaction2);
+        Transaction transaction3 = managing.makeTransaction(1, 3);
 /*
         Transaction transaction3 = managing.makeTransaction(1, 3);
         System.out.println(transaction3);*/
 
+        /*System.out.println();
+        System.out.println(managing.getById(transaction1.getId()));*/
+
+//        Transaction transaction3 = managing.makeTransaction(2, 2);
+
+        /*Transaction transaction3 = managing.makeTransaction(2, 2);
         System.out.println();
-        System.out.println(managing.getById(transaction1.getId()));
+        Transaction[] transactions = managing.transactionListByTerminal(45);
+        for (Transaction transaction : transactions) {
+            if (transaction != null) {
+                System.out.println(transaction);
+            }
+        }*/
+
+        /*Transaction[] transactionList = managing.transactionListByCard(2);
+        for (Transaction transaction : transactionList) {
+            if (transaction != null) {
+                System.out.println(transaction);
+            }
+        }*/
+
+        Transaction[] transactions = managing.getTransactionsByDate("2026.02.13");
+        for (Transaction transaction : transactions) {
+            if (transaction != null){
+                System.out.println(transaction);
+            }
+        }
     }
 }

@@ -1,4 +1,6 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Managing {
     private Double faire;
@@ -159,17 +161,41 @@ public class Managing {
 
     //  terminal id bo'yicha barcha  transaction lar
     public Transaction[] transactionListByTerminal(Integer terminalId) {
-        return null;
+        Transaction[] tempArray = new Transaction[transactionIndex];
+        int i = 0;
+        for (Transaction transaction : transactionArray) {
+            if (transaction != null && transaction.getTerminal().getId().equals(terminalId)) {
+                tempArray[i] = transaction;
+            }
+        }
+        return tempArray;
     }
 
     //  carta id si  bo'yicha barcha  transaction lar
     public Transaction[] transactionListByCard(Integer cardId) {
-        return null;
+        Transaction[] tempArray = new Transaction[transactionIndex];
+        int i = 0;
+        for (Transaction transaction : transactionArray) {
+            if (transaction != null && transaction.getCard().getId().equals(cardId)) {
+                tempArray[i++] = transaction;
+            }
+        }
+        return tempArray;
     }
 
     // kun bo'yicha barcha transaction lar (yyyy.MM.dd    keladigan  kun formati)
-    public Transaction[] getTransactionsByDate(String data) {
-        return null;
+    public Transaction[] getTransactionsByDate(String dateStr) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        LocalDate date = LocalDate.parse(dateStr, formatter); //2024-05-26
+
+        Transaction[] tempArray = new Transaction[transactionIndex];
+        int i = 0;
+        for (Transaction transaction : transactionArray) {
+            if (transaction != null && transaction.getCreatedDate().toLocalDate().isEqual(date)) {// 2024-05-26 17:23
+                tempArray[i++] = transaction;
+            }
+        }
+        return tempArray;
     }
 
     // Transactionlar soni bo'yicha  terminallar ro'yxatini return qiling.
