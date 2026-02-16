@@ -3,9 +3,9 @@ public class Main {
         Managing managing = new Managing();
         managing.setFaire(2000.0);
 
-        Card card1 = managing.addCard(1, 3000.0);
+        Card card1 = managing.addCard(1, 5000.0);
         Card card2 = managing.addCard(2, 10000.0);
-        Card card3 = managing.addCard(3, 100022.0);
+        Card card3 = managing.addCard(3, 20000.0);
 
         /*System.out.println(managing.getCard(1));
         System.out.println(managing.getCard(100));*/
@@ -60,11 +60,22 @@ public class Main {
             }
         }*/
 
-        Transaction[] transactions = managing.getTransactionsByDate("2026.02.13");
+        /*Transaction[] transactions = managing.getTransactionsByDate("2026.02.13");
         for (Transaction transaction : transactions) {
             if (transaction != null){
                 System.out.println(transaction);
             }
+        }*/
+
+        //transaction list by terminal
+        Transaction[] transactionArray = terminal1.transactionList();
+        for (Transaction transaction : transactionArray){
+            if (transaction != null){
+                System.out.println(transaction);
+            }
         }
+
+        double totalFaireByDay = terminal1.getAmountByDay("2026.02.16");
+        System.out.println(totalFaireByDay);
     }
 }
