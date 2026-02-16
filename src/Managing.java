@@ -201,7 +201,7 @@ public class Managing {
         return tempArray;
     }
 
-    // Transactionlar soni bo'yicha  terminallar ro'yxatini return qiling.
+    // Transactionlar soni bo'yicha terminallar ro'yxatini return qiling.
     public Terminal[] terminalList_orderedByTransactionsCount() {
         return null;
     }
@@ -213,7 +213,7 @@ public class Managing {
 
     // umumiy yo'l kira xaqqini olish
     public double getTotalFaire() {
-        return 0.0;
+        return faire;
     }
 
 }

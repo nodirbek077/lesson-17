@@ -21,12 +21,21 @@ public class Card {
 
     // bugungi transaction lar ro'yxati
     public Transaction[] todayTransactionList() {
-        return transactionArray;
+        LocalDate today = LocalDate.now();
+        Transaction[] tempArray = new Transaction[transactionIndex];
+        int tempIndex = 0;
+        for (Transaction transaction : transactionArray){
+            if (transaction != null && transaction.getCreatedDate().toLocalDate().isEqual(today)) {
+                tempArray[tempIndex++] = transaction;
+            }
+        }
+
+        return tempArray;
     }
 
     // xozirgi balansdagi pul
     public double currentAmount() {
-        return 0.0;
+        return balance;
     }
 
     // berilgan kun bo'yicha ishlatilgan pul miqdori yyyy.MM.dd
@@ -36,7 +45,7 @@ public class Card {
 
         Double spentMoney = 0.0;
         for (Transaction transaction : transactionArray){
-            if (transaction != null && transaction.getCreatedDate().toLocalDate().equals(date)){
+            if (transaction != null && transaction.getCreatedDate().toLocalDate().isEqual(date)){
                 spentMoney += transaction.getFaire();
             }
         }
