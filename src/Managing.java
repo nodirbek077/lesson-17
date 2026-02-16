@@ -136,6 +136,7 @@ public class Managing {
         transaction.setCreatedDate(LocalDateTime.now());
 
         terminal.addTransaction(transaction);
+        card.addTransaction(transaction);
 
         if (transactionArray.length == transactionIndex) {
             Transaction[] tempArray = new Transaction[transactionArray.length * 2];

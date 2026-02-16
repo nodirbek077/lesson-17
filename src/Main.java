@@ -33,8 +33,9 @@ public class Main {
         }*/
 
         Transaction transaction1 = managing.makeTransaction(1, 1);
-        Transaction transaction2 = managing.makeTransaction(1, 2);
-        Transaction transaction3 = managing.makeTransaction(1, 3);
+        Transaction transaction2 = managing.makeTransaction(1, 3);
+        Transaction transaction3 = managing.makeTransaction(2, 3);
+
 /*
         Transaction transaction3 = managing.makeTransaction(1, 3);
         System.out.println(transaction3);*/
@@ -68,14 +69,25 @@ public class Main {
         }*/
 
         //transaction list by terminal
-        Transaction[] transactionArray = terminal1.transactionList();
+        /*Transaction[] transactionArray = terminal1.transactionList();
         for (Transaction transaction : transactionArray){
             if (transaction != null){
                 System.out.println(transaction);
             }
         }
-
-        double totalFaireByDay = terminal1.getAmountByDay("2026.02.16");
+*/
+       /* Double totalFaireByDay = terminal1.getAmountByDay("2026.02.16");
         System.out.println(totalFaireByDay);
+*/
+        /*double spentMoneyByDay = card3.getTransactionAmountByDay("2026.02.16");
+        System.out.println(spentMoneyByDay);
+        */
+
+        Transaction[] transactions = card3.todayTransactionList();
+        for (Transaction transaction : transactions) {
+            if (transaction != null){
+                System.out.println(transaction);
+            }
+        }
     }
 }

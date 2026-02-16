@@ -21,13 +21,13 @@ public class Terminal {
     }
 
     // yyyy.MM.dd
-    public double getAmountByDay(String dateStr) {
+    public Double getAmountByDay(String dateStr) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         LocalDate date = LocalDate.parse(dateStr, formatter); //2024-05-26
 
         Double totalFaire = 0.0;
         for (Transaction transaction : transactionArray){
-            if (transaction != null && transaction.getCreatedDate().toLocalDate().equals(date)){
+            if (transaction != null && transaction.getCreatedDate().toLocalDate().isEqual(date)){
                 totalFaire += transaction.getFaire();
             }
         }
